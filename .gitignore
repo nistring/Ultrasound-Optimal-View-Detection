@@ -1,0 +1,7 @@
+data/
+img/
+video/
+weights/
+__pycache__/
+@UGA.code-workspace
+run.sh
