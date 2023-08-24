@@ -23,8 +23,11 @@ def create_model(cnn, pretrained=True, in_chans=1, num_classes=1):
     # Modify the first conv layer
     model.conv1 = nn.Conv2d(in_chans, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
     # Modify the fc layer so that the number of output's channel equals num_classes
-    num_ftrs = model.fc.in_features
-    model.fc = nn.Linear(num_ftrs, num_classes)
+    if num_classes==0:
+        model.fc = nn.Identity()
+    else:
+        num_ftrs = model.fc.in_features
+        model.fc = nn.Linear(num_ftrs, num_classes)
     return model
 
 
